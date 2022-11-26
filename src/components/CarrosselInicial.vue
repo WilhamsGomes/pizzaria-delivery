@@ -40,10 +40,9 @@
 
                                     <v-card-actions >
                                         <v-btn 
-                                            variant="tonal" 
-                                            rounded="pill" 
+                                            variant="flat" 
                                             color="red" 
-                                            flat
+                                            class="ml-2"
                                         >
                                             Eu quero
                                         </v-btn>

@@ -3,7 +3,6 @@
         :elevation="0" 
         color="#181717" 
         class="d-flex align-center" 
- 
     >
         <v-app-bar-nav-icon>
             <v-avatar
@@ -31,6 +30,7 @@
         </v-btn>
         
         <v-spacer></v-spacer>
+
         <v-btn 
             icon 
             color="red"
@@ -55,10 +55,11 @@
                 'Contato',
             ],
             quantItems: 0,
+            
         }),
 
-        mounted(){
-            console.log(this.$store.state.quantItems)
+        methods:{
+            
         }
         
     }
