@@ -31,22 +31,20 @@
         
         <v-spacer></v-spacer>
 
-        <v-btn 
-            icon 
-            color="red"
-            class="mr-16"
-        >
-            <v-badge  offset-y="0" offset-x="-2" color="white" :content="$store.state.quantItems">
-                <v-icon>mdi-cart-outline</v-icon>
-            </v-badge>
-        </v-btn>
+        <CardCarrinhoVue/>
+        
     </v-app-bar>
 </template>
 
 <script>
 
+    import CardCarrinhoVue from './CardCarrinho.vue';
+
     export default {
         name:"SideBar",
+        components:{
+            CardCarrinhoVue
+        },
         data: () => ({
             links: [
                 'Cardápio',

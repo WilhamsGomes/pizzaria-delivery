@@ -26,6 +26,7 @@
                                 <span class="mr-1 font-weight-bold">R$ {{item.priceProduct}}</span>
                             </v-card-subtitle>
                         </v-card-item>
+                        
 
                         <v-card-text>
                             <v-row align="center" class="mx-0">
