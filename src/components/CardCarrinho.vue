@@ -22,18 +22,18 @@
             <v-card>
                 <div v-if="$store.state.quantItems > 0">
                     <v-card-title>
-                    <span class="text-h5">Carrinho</span>
+                    <span class="text-h5 d-flex justify-center">Carrinho</span>
                     </v-card-title>
-                    <v-card-subtitle>
+                    <v-card-subtitle class="d-flex justify-center">
                         Finalize seu pedido 
                     </v-card-subtitle>
 
                     <v-card-item 
                         v-for="item, index in $store.state.carrrinhoDelivery"
                         :key="index"
-                        class="mb-8 mt-8 " 
+                        class="mb-4 mt-8 " 
                     >
-                        <v-card-title class="font-weight-bold"> {{item.quantityProduct}}x {{item.titleProduct}} </v-card-title>
+                        <v-card-title class="font-weight-bold"> 🍕 {{item.quantityProduct}}x {{item.titleProduct}} </v-card-title>
                         <v-card-subtitle>
                             <span class="mr-1 font-weight-bold mb-4">
                                 Tamanho:

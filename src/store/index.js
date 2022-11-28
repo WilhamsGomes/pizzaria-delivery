@@ -2,16 +2,17 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
+
     quantItems: 0,
-    carrrinhoDelivery: [
-    ],
+    carrrinhoDelivery: 
+    [],
        
   },
   
   getters: {
 
     precoTotal(state){
-        return state.carrrinhoDelivery.reduce( (total, item) => (total += (item.priceProduct * item.quantityProduct)).toFixed(2), 0)
+        return state.carrrinhoDelivery.reduce( (total, item) => (total += (item.priceProduct * item.quantityProduct)), 0)
     },
 
   },
@@ -32,6 +33,10 @@ export default createStore({
   },
 
   actions: {
+
+    adicionarProducAction(context, data){
+        context.commit('addProductInCar', data)
+    }
 
   },
 
