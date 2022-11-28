@@ -4,6 +4,7 @@
             v-model="dialog"
             persistent
             class="align-center"
+            max-width="40%"
         >
             <template v-slot:activator="{ props }">
                 <v-btn 
@@ -19,28 +20,38 @@
             </template>
 
             <v-card>
-                <v-card-title>
+                <div v-if="$store.state.quantItems > 0">
+                    <v-card-title>
                     <span class="text-h5">Carrinho</span>
-                </v-card-title>
-                <v-card-subtitle>
-                    Finalize seu pedido 
-                </v-card-subtitle>
-
-                <v-card-item class="mb-8 mt-8 ">
-                    <v-card-title class="font-weight-bold"> 3x Pizza calabresa </v-card-title>
+                    </v-card-title>
                     <v-card-subtitle>
-                        <span class="mr-1 font-weight-bold mb-4">Tamanho: G</span>
+                        Finalize seu pedido 
                     </v-card-subtitle>
+
+                    <v-card-item 
+                        v-for="item, index in $store.state.carrrinhoDelivery"
+                        :key="index"
+                        class="mb-8 mt-8 " 
+                    >
+                        <v-card-title class="font-weight-bold"> {{item.quantityProduct}}x {{item.titleProduct}} </v-card-title>
+                        <v-card-subtitle>
+                            <span class="mr-1 font-weight-bold mb-4">
+                                Tamanho:
+                                <span v-if="item.selectionTamanho == 0">P</span>
+                                <span v-if="item.selectionTamanho == 1">M</span>
+                                <span v-if="item.selectionTamanho == 2">G</span>
+                            </span>
+                        </v-card-subtitle>
+                        <v-divider></v-divider>
+                    </v-card-item>
+
                     <v-divider></v-divider>
-                    <v-card-title class="font-weight-bold"> 3x Pizza Mussarela </v-card-title>
-                    <v-card-subtitle>
-                        <span class="mr-1 font-weight-bold">Tamanho: P</span>
-                    </v-card-subtitle>
+                    <v-card-title class="ml-2 font-weight-bold">Total: R$ {{$store.getters.precoTotal}}</v-card-title>
+                </div>
 
-                </v-card-item>
-
-                <v-divider></v-divider>
-                <v-card-title class="ml-2 font-weight-bold">Total: R$ 79,00</v-card-title>
+                <div v-else class="mt-8" align="center" id="text-carrinho-vazio">
+                    Ops. Seu carrinho está vazio 😥😥 <br> Que tal adicionar itens nele?
+                </div>
 
                 <v-card-actions>
                     <v-spacer></v-spacer>
@@ -52,6 +63,15 @@
                         Fechar
                     </v-btn>
                     <v-btn
+                        v-if="$store.state.quantItems > 0"
+                        color="transparent"
+                        variant="flat"
+                        @click="$store.commit('limparCarrinho')"
+                    >
+                        Limpar
+                    </v-btn>
+                    <v-btn
+                        v-if="$store.state.quantItems > 0"
                         color="red"
                         variant="flat"
                         @click="dialog = false"
@@ -69,15 +89,20 @@
         name:"CardCarrinho",
         data: () => ({
             dialog: false,
-        }),
+        })
+
     }
 </script>
 
-<style scoped>
+<style >
 
 .v-dialog .v-overlay__content{
-    flex-direction: inherit !important;
-    justify-content: center !important;
+    max-width: calc(100% - 70%) !important;
+
+}
+
+#text-carrinho-vazio{
+    font-size:25px;
 }
 
 </style>

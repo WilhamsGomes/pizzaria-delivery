@@ -1,6 +1,15 @@
 <template>
     <div>
         <TitlePage txtTitle="Destaques" class="mt-8"/>
+        <v-alert  
+            v-if="alertShow"
+            type="success" 
+            max-width="40%" height="30" 
+            id="alert-item" 
+            class="d-flex align-center justify-center"
+        >
+        Item adicionado ao carrinho.
+        </v-alert>
         <v-sheet class="mx-auto" elevation="0">
             <v-slide-group  class="pa-4 mt-2 mb-8" selected-class="bg-success" show-arrows >
                 <v-slide-group-item
@@ -8,7 +17,6 @@
                     :key="key"
                 >
                     <v-card  
-                        :loading="loading" 
                         class="ml-4 mr-4 mb-4 rounded-lg card-hover" 
                         max-width="300" max-height="550" 
                         elevation="1" 
@@ -20,7 +28,7 @@
                             :src="item.urlImg"
                         ></v-img>
 
-                        <v-card-item>
+                        <v-card-item >
                             <v-card-title class="font-weight-bold">{{item.titleProduct}} </v-card-title>
                             <v-card-subtitle>
                                 <span class="mr-1 font-weight-bold">R$ {{item.priceProduct}}</span>
@@ -90,7 +98,7 @@
                                 id="button-cardapio"
                                 color="red"
                                 variant="flat"
-                                @click="reserve"
+                                @click="addCarinho(item)"
                                 width="80%"
                             >
                                 Adicionar ao carrinho
@@ -113,8 +121,8 @@
             TitlePage
         },
         data: () => ({
-            loading: false,
             selection: 1,
+            alertShow: false,
             model: 0,
             items: [
                 {   
@@ -186,18 +194,38 @@
                 
                 
             ],
+            product: {},
         }),
 
         methods: {
-            reserve () {
-                this.loading = true
-                setTimeout(() => (this.loading = false), 2000)
+            addCarinho (item) { 
+
+                if((item.selectionTamanho || item.selectionTamanho == 0) && item.quantityProduct){
+                    const elementos = document.querySelectorAll('.v-chip')
+
+                    for(var x=0; x < elementos.length; x++){
+                        elementos[x].classList.remove('v-chip--selected')
+                    }
+
+                    this.$store.commit("addProductInCar", item )
+                    this.alertShow = true
+                    setTimeout(()=>{
+                        this.alertShow = false                        
+                    }, 2500)
+                    
+                } else {
+                    alert("Informe o tamanho e quantidade desejada")
+                }
+
+                
             },
         },
+
+        
     }
 </script>
 
-<style scoped>
+<style>
 
 #descriptionProduct{
     text-align: justify;
@@ -226,6 +254,14 @@
 
 .card-hover:hover{
     transform: scale(1.05);
+}
+
+#alert-item{
+    margin: 0 auto !important;
+}
+
+.v-alert__prepend{
+    align-self:inherit !important;
 }
 
 </style>
