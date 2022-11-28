@@ -48,7 +48,6 @@
         data: () => ({
             links: [
                 'Cardápio',
-                'Localização',
                 'Sobre nós',
                 'Contato',
             ],
