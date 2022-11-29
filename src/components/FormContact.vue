@@ -14,7 +14,14 @@
             ></v-text-field>
 
             <v-text-field
+                type="email"
                 label="E-mail"
+                required
+                variant="solo"
+            ></v-text-field>
+
+            <v-text-field
+                label="Número de telefone"
                 required
                 variant="solo"
             ></v-text-field>
