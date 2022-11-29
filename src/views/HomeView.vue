@@ -5,6 +5,7 @@
       <BarraPesquisar/>
       <CardCardapio/>
       <InfosDelivery/>
+      <FormContact/>
       <FooterComponent/>
     </div>
 </template>
@@ -18,6 +19,7 @@
   import BarraPesquisar from '@/components/BarraPesquisar.vue';
   import InfosDelivery from '@/components/InfosDelivery.vue';
   import FooterComponent from '@/components/FooterComponent.vue';
+  import FormContact from '@/components/FormContact.vue';
 
   export default {
       name: 'HomeView',
@@ -29,6 +31,7 @@
         BarraPesquisar,
         InfosDelivery,
         FooterComponent,
+        FormContact
       },
   };
 </script>

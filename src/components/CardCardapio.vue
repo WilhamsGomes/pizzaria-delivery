@@ -202,18 +202,19 @@
             addCarinho (item) { 
 
                 if((item.selectionTamanho || item.selectionTamanho == 0) && item.quantityProduct){
-                    const elementos = document.querySelectorAll('.v-chip')
-
-                    for(var x=0; x < elementos.length; x++){
-                        elementos[x].classList.remove('v-chip--selected')
+                   
+                    const productSelected = {
+                        ...item
                     }
 
-                    this.$store.dispatch('adicionarProducAction', item)
+                    this.$store.dispatch('adicionarProducAction', productSelected)
                     //this.$store.commit("addProductInCar", item )
 
                     this.alertShow = true
                     setTimeout(()=>{
-                        this.alertShow = false                        
+                        this.alertShow = false     
+                        item.selectionTamanho = null
+                        item.quantityProduct = 0                   
                     }, 2500)
                     
                 } else {
