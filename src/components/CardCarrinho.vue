@@ -4,7 +4,7 @@
             v-model="dialog"
             persistent
             class="align-center"
-            max-width="40%"
+           
         >
             <template v-slot:activator="{ props }">
                 <v-btn 
@@ -129,8 +129,13 @@
 <style >
 
 .v-dialog .v-overlay__content{
-    max-width: calc(100% - 70%) !important;
+    max-width: calc(100% - 50%) !important;
+}
 
+@media screen and (max-width: 720px){
+    .v-dialog .v-overlay__content{
+        max-width: calc(100% - 0%) !important;
+    }
 }
 
 #text-carrinho-vazio{
